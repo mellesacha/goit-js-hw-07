@@ -17,9 +17,11 @@ gallery.insertAdjacentHTML("beforeend", markup);
 gallery.addEventListener('click', OnClick);
 
 function OnClick(evt) {
-    evt.preventDefault();
-
-    const instance = basicLightbox.create(`
+  evt.preventDefault();
+  
+  console.dir(evt.target)
+  if (evt.target.nodeName === 'IMG') {
+     const instance = basicLightbox.create(`
     <img class="gallery__image" src="${evt.target.dataset.source}" width="800" height="600" alt="${evt.target.alt}">`);
     
     instance.show();
@@ -31,6 +33,8 @@ function OnClick(evt) {
             instance.close()
         }
     };
+  }
+  
 };
 
 
