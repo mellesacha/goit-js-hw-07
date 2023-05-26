@@ -30,8 +30,10 @@ function OnClick(evt) {
 
     function OnFunck(evt) {
         if (evt.key === "Escape") {
-            instance.close()
+          instance.close()
         }
+      
+       removeEventListener('keydown', OnFunck);
     };
   }
   
