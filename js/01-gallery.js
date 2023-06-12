@@ -18,27 +18,38 @@ gallery.addEventListener('click', OnClick);
 
 function OnClick(evt) {
   evt.preventDefault();
-  
-  console.dir(evt.target)
+
   if (evt.target.nodeName === 'IMG') {
-     const instance = basicLightbox.create(`
-    <img class="gallery__image" src="${evt.target.dataset.source}" width="800" height="600" alt="${evt.target.alt}">`);
+    const instance = basicLightbox.create(`
+    <img class="gallery__image" src="${evt.target.dataset.source}" width="800" height="600" alt="${evt.target.alt}">`,
+      {
+        onShow() { addEventListener('keydown', OnFunck)},
+        onClose() { removeEventListener('keydown', OnFunck); }
+      })
     
     instance.show();
 
-    addEventListener('keydown', OnFunck);
-
     function OnFunck(evt) {
-        if (evt.key === "Escape") {
-          instance.close()
-        }
-      
-       removeEventListener('keydown', OnFunck);
+      if (evt.key === "Escape") {
+        instance.close()
+      }
     };
   }
-  
+
+  // if (evt.target.nodeName === 'IMG') {
+  //    const instance = basicLightbox.create(`
+  //   <img class="gallery__image" src="${evt.target.dataset.source}" width="800" height="600" alt="${evt.target.alt}">`);
+    
+  //   instance.show();
+
+  //   addEventListener('keydown', OnFunck);
+
+  //   function OnFunck(evt) {
+  //       if (evt.key === "Escape") {
+  //         instance.close()
+  //       }
+      
+  //      removeEventListener('keydown', OnFunck);
+  //   };
+  // }
 };
-
-
-
-
